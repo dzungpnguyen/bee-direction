@@ -1,6 +1,5 @@
 import os
 import utils
-from configs.configs import CFG_SEG
 from configs import variables
 from ultralytics import YOLO
 
