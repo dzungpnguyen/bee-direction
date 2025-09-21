@@ -17,7 +17,6 @@ def create_yaml_file(output_path: str, data_path: str) -> None:
     }
     with open(output_path, 'w') as f:
         yaml.dump(data, f, sort_keys=False)
-    print(f'Created config file for {data_path} at {output_path}')
     return
 
 def compute_image_new_dimensions(minimum_crop_dims: tuple[int], minimum_expected_dims: tuple[int], original_dims: tuple[int]) -> tuple[int]:
@@ -36,5 +35,4 @@ def compute_image_new_dimensions(minimum_crop_dims: tuple[int], minimum_expected
     # dimensions must be multiple of 32 (required by YOLO)
     new_size_32 = (new_size[0] if new_size[0]%32==0 else (new_size[0]//32+1)*32,
                    new_size[1] if new_size[1]%32==0 else (new_size[1]//32+1)*32)
-    print(f'New size 32: {new_size_32}')
     return new_size_32
