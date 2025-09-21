@@ -29,7 +29,10 @@ class CFG_SEG:
     CUSTOM_DATASET_DIR = f'{str(variables.PROJECT_ROOT)}/data/{variables.DATA_FOLDER_NAME}'
     DATA_YAML_FILE = f'{str(variables.PROJECT_ROOT)}/configs/segmentation.yaml'
 
-def train_seg_model():
+def train_seg_model() -> None:
+    """
+    Train a segmentation model using YOLOv8 and custom data 
+    """
     # create data yaml file
     print('Creating data yaml file...')
     utils.create_yaml_file(CFG_SEG.DATA_YAML_FILE, CFG_SEG.CUSTOM_DATASET_DIR)
