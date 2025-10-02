@@ -1,5 +1,6 @@
 import os
 import utils
+import mlflow
 from configs import variables
 from ultralytics import YOLO
 
@@ -29,10 +30,13 @@ class CFG_SEG:
     CUSTOM_DATASET_DIR = f'{str(variables.PROJECT_ROOT)}/data/{variables.DATA_FOLDER_NAME}'
     DATA_YAML_FILE = f'{str(variables.PROJECT_ROOT)}/configs/segmentation.yaml'
 
-def train_seg_model() -> None:
+def train_seg_model(run_id) -> None:
     """
     Train a segmentation model using YOLOv8 and custom data 
     """
+    
+    mlflow.start_run(run_id=run_id)
+
     # create data yaml file
     print('Creating data yaml file...')
     utils.create_yaml_file(CFG_SEG.DATA_YAML_FILE, CFG_SEG.CUSTOM_DATASET_DIR)
