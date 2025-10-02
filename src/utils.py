@@ -36,3 +36,17 @@ def compute_image_new_dimensions(minimum_crop_dims: tuple[int], minimum_expected
     new_size_32 = (new_size[0] if new_size[0]%32==0 else (new_size[0]//32+1)*32,
                    new_size[1] if new_size[1]%32==0 else (new_size[1]//32+1)*32)
     return new_size_32
+
+def get_class_params(my_cls: type) -> dict:
+    """
+    Extract class attributes that are not private or callable.
+    Args: 
+        cls: A class
+    Returns: A dict suitable for MLflow logging ({param name: param value})
+    """
+    params = {}
+    for key in dir(my_cls):
+        value = getattr(my_cls, key)
+        if not callable(value):
+            params[key] = value
+    return params
